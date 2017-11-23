@@ -1,1 +1,2 @@
-# git-alias-setup
+# Setup aliases for git
+
