@@ -1,8 +1,8 @@
 # Setup aliases for git
 
 ## Usage
-./sgit.sh [ARGUMENT VALUE].. [OPTION]
+`$./sgit.sh [ARGUMENT VALUE]... [OPTION]...`
 
 ## List of supported aliases
-git s - git status
+`$git s` is translated to `$git status`
 
