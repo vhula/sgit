@@ -3,7 +3,8 @@
 function help() {
     echo "Usage: sgit [ARGUMENT VALUE]... [OPTION]..."
     echo "Sets up different aliases for git command"
-    
+    echo "All options are applied globaly by default (git config --global)"
+    echo ""
     echo "Arguments:"
     echo -e "\t-u, --username\t\t\tname of the user for git env"
     echo -e "\t-e, --email\t\t\temail of the user for git env"
@@ -11,11 +12,11 @@ function help() {
     echo "Options"
     echo -e "\t-h, --help\t\t\tprint usage"
     echo -e "\t-c, --configure\t\t\tconfigure default aliases"
-    echo -e "\t--global\t\t\tglobal configuration"
+    echo -e "\t--local\t\t\t\tapply configuration for the current user only"
 }
 
 CONFIG_COMMAND="git config"
-GLOBAL_CONFIG=""
+GLOBAL_CONFIG="--global"
 
 function configure_if_not_empty() {
     CONFIG_NAME="${1}"
@@ -55,8 +56,8 @@ case $key in
     shift
     shift
     ;;
-    --global)
-    GLOBAL_CONFIG="--global"
+    --local)
+    GLOBAL_CONFIG=""
     shift
     shift
     ;;

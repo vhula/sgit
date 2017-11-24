@@ -38,6 +38,8 @@ Follow these steps to install `sgit` manually:
     ```
     Usage: sgit [ARGUMENT VALUE]... [OPTION]...
     Sets up different aliases for git command
+    All options are applied globaly by default (git config --global)
+    
     Arguments:
             -u, --username                  name of the user for git env
             -e, --email                     email of the user for git env
@@ -45,7 +47,7 @@ Follow these steps to install `sgit` manually:
     Options
             -h, --help                      print usage
             -c, --configure                 configure default aliases
-            --global                        global configuration
+            --local                         apply configuration for the current user only
     ```
 
 ### Generic configuration
