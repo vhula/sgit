@@ -3,6 +3,7 @@
 ## Table of contents
   * [Table of contents](#table-of-contents)
   * [Installation](#installation)
+    * [Manual installation](#manual-installation)
   * [Usage](#usage)
     * [Generic configuration](#generic-configuration)
     * [Alias configuration](#alias-configuration)
@@ -11,7 +12,12 @@
 
 
 ## Installation
-TBD
+
+### Manual installation
+
+Follow these steps to install `sgit` manually:
+1. clone this repository
+2. add `scripts` directory to your `$PATH`
 
 ## Usage
 `$sgit [ARGUMENT VALUE]... [OPTION]...`
@@ -25,5 +31,5 @@ TBD
 #### Supported aliases
 TBD
 
-## Contributions and Development
+### Contributions and Development
 TBD
