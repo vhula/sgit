@@ -1,8 +1,24 @@
 # Setup aliases for git
 
+## Table of contents
+  * [Table of contents](#table-of-contents)
+  * [Installation](#installation)
+  * [Usage](#usage)
+    * [Generic configuration](#generic-configuration)
+    * [Alias configuration](#alias-configuration)
+      * [Supported aliases](#supported-aliases)
+
+## Installation
+TBD
+
 ## Usage
-`$./sgit.sh [ARGUMENT VALUE]... [OPTION]...`
+`$sgit [ARGUMENT VALUE]... [OPTION]...`
 
-## List of supported aliases
-`$git s` is translated to `$git status`
+### Generic configuration
+TBD
 
+### Alias configuration
+TBD
+
+#### Supported aliases
+TBD
