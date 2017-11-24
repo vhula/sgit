@@ -1,4 +1,6 @@
-# Configuration tool for git
+# `sgit`
+
+This is a tool for managing git configuration easily
 
 ## Table of contents
   * [Table of contents](#table-of-contents)
