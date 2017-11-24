@@ -1,4 +1,4 @@
-# Setup aliases for git
+# Configuration tool for git
 
 ## Table of contents
   * [Table of contents](#table-of-contents)
