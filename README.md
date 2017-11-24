@@ -19,7 +19,7 @@ This is a tool for managing git configuration easily
 
 Follow these steps to install `sgit` manually:
 1. clone this repository
-2. add `<Your cloned directory>/scripts` directory to your `$PATH`
+2. add `<cloned directory>/scripts` directory to your `$PATH`
 
     Assuming that this repository cloned into `/usr/local/bin/sgit/` directory:
     
