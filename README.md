@@ -65,7 +65,7 @@ Follow these steps to install `sgit` manually:
     
   Multiple options can be applied simultaneously:
 
-    `$sgit -u "<Your Name>" -e "<Your Email>" --editor "vim"`
+   `$sgit -u "<Your Name>" -e "<Your Email>" --editor "vim"`
 
 ### Alias configuration
 TBD
