@@ -7,6 +7,8 @@
     * [Generic configuration](#generic-configuration)
     * [Alias configuration](#alias-configuration)
       * [Supported aliases](#supported-aliases)
+  * [Contributions and Development](#contributions-and-development) 
+
 
 ## Installation
 TBD
@@ -21,4 +23,7 @@ TBD
 TBD
 
 #### Supported aliases
+TBD
+
+## Contributions and Development
 TBD
