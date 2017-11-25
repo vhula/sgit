@@ -75,7 +75,9 @@ Follow these steps to install `sgit` manually:
     `$sgit -c`
 
 #### Supported aliases
+
 (More will be added later)
+
 | Alias      | Command            | Description |
 | ---------- | ------------------ | ----------- |
 | `s`        | `status`           |             |
