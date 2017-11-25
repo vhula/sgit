@@ -7,6 +7,7 @@ This is a tool for managing git configuration easily
   * [Installation](#installation)
     * [Manual installation](#manual-installation)
   * [Usage](#usage)
+    * [One-time configuration](#one-time-configuration)
     * [Generic configuration](#generic-configuration)
     * [Alias configuration](#alias-configuration)
       * [Supported aliases](#supported-aliases)
@@ -27,11 +28,10 @@ Follow these steps to install `sgit` manually:
     
 
 ## Usage
-1. Generic usage
 
     `$sgit [ARGUMENT VALUE]... [OPTION]...`
 
-2. Help
+1. Help
 
     `$sgit --help`
     
@@ -48,6 +48,31 @@ Follow these steps to install `sgit` manually:
             -h, --help                      print usage
             -c, --configure                 configure default aliases
             --global-off                    apply configuration for the current user only
+    ```
+
+### One-time configuration
+
+To configure git username, email, default editor and pre-defined aliases:
+
+    $sgit --username "Your Name" --email "Your Email" --editor vim --configure
+    
+Later command results into:
+    
+    ```
+    [core]
+        editor = vim
+    ...
+    [user]
+            name = Your Name
+            email = Your Email
+    [alias]
+            s = status
+            pr = pull --rebase
+            c = commit
+            cp = commit --amend
+            cpn = commit --amend --no-edit
+            ...
+    ...
     ```
 
 ### Generic configuration
