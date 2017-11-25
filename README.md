@@ -84,4 +84,13 @@ Follow these steps to install `sgit` manually:
 | `pr`       | `pull --rebase`    |             |
 
 ### Contributions and Development
-TBD
+
+#### Contribution
+
+1. Create an issue (what you want to see in this tool)
+2. Assign any issue to yourself
+3. Create a pull request
+
+#### Development
+
+What suites you best :)
