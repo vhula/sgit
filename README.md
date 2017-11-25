@@ -78,10 +78,13 @@ Follow these steps to install `sgit` manually:
 
 (More will be added later)
 
-| Alias      | Command            | Description |
-| ---------- | ------------------ | ----------- |
-| `s`        | `status`           |             |
-| `pr`       | `pull --rebase`    |             |
+| Alias      | Command                    | Description |
+| ---------- | -------------------------- | ----------- |
+| `s`        | `status`                   |             |
+| `pr`       | `pull --rebase`            |             |
+| `c`        | `commit`                   |             |
+| `cp`       | `commit --amend`           | Amend previous commit            |
+| `cpn`      | `commit --amend --no-edit` | Amend previous commit without editing the commit message |
 
 ### Contributions and Development
 
