@@ -12,17 +12,28 @@ function help() {
     echo "Options"
     echo -e "\t-h, --help\t\t\tprint usage"
     echo -e "\t-c, --configure\t\t\tconfigure default aliases"
-    echo -e "\t--local\t\t\t\tapply configuration for the current user only"
+    echo -e "\t--global-off\t\t\t\tapply configuration for the current user only"
 }
+
+if [ $# -eq 0 ]; then
+  echo "no arguments are specified"
+  echo ""
+  help
+  exit 1
+fi
 
 CONFIG_COMMAND="git config"
 GLOBAL_CONFIG="--global"
+
+SCRIPTPATH="$( cd "$(dirname "$0")" ; pwd -P )"
 
 function configure_if_not_empty() {
     CONFIG_NAME="${1}"
     CONFIG_VALUE="${2}"
     if [ ! -z "${CONFIG_VALUE}" ]; then
-      eval "${CONFIG_COMMAND} ${GLOBAL_CONFIG} ${CONFIG_NAME} \"${CONFIG_VALUE}\""
+      CMD="${CONFIG_COMMAND} ${GLOBAL_CONFIG} ${CONFIG_NAME} \"${CONFIG_VALUE}\""
+      eval "${CMD}"
+      echo -e "\t'${CONFIG_NAME}'' is set to \"${CONFIG_VALUE}\""
     fi
 }
 
@@ -33,8 +44,6 @@ case $key in
     -h|--help)
     help
     exit 0
-    shift
-    shift
     ;;
     -u|--username)
     CONFIG_USERNAME="$2"
@@ -54,20 +63,30 @@ case $key in
     -c|--configure)
     CONFIGURE_ALIASES="yes"
     shift
-    shift
     ;;
-    --local)
+    --global-off)
     GLOBAL_CONFIG=""
     shift
-    shift
+    ;;
+    *)
+    echo "unknown option or argument: ${1}"
+    echo ""
+    help
+    exit 1
     ;;
 esac
 done
-
+echo "configuration..."
 configure_if_not_empty "user.name" "${CONFIG_USERNAME}"
 configure_if_not_empty "user.email" "${CONFIG_EMAIL}"
 configure_if_not_empty "core.editor" "${CORE_EDITOR}"
 
 if [ "${CONFIGURE_ALIASES}" = "yes" ]; then
-  echo "Aliases configuration"
+  echo ""
+  echo "aliases configuration..."
+  while read -r line || [[ -n "$line" ]]; do
+    name=$(echo "$line" | sed --regexp-extended "s/(([^=]+)=(.*))/\2/")
+    value=$(echo "$line" | sed --regexp-extended "s/(([^=]+)=(.*))/\3/")
+    configure_if_not_empty "alias.${name}" "${value}"
+  done < "${SCRIPTPATH}/config/aliases.properties"
 fi
