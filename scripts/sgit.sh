@@ -12,7 +12,7 @@ function help() {
     echo "Options"
     echo -e "\t-h, --help\t\t\tprint usage"
     echo -e "\t-c, --configure\t\t\tconfigure default aliases"
-    echo -e "\t--global-off\t\t\t\tapply configuration for the current user only"
+    echo -e "\t--global-off\t\t\tapply configuration for the current user only"
 }
 
 if [ $# -eq 0 ]; then
@@ -33,7 +33,7 @@ function configure_if_not_empty() {
     if [ ! -z "${CONFIG_VALUE}" ]; then
       CMD="${CONFIG_COMMAND} ${GLOBAL_CONFIG} ${CONFIG_NAME} \"${CONFIG_VALUE}\""
       eval "${CMD}"
-      echo -e "\t'${CONFIG_NAME}'' is set to \"${CONFIG_VALUE}\""
+      echo -e "\t'${CONFIG_NAME}' is set to \"${CONFIG_VALUE}\""
     fi
 }
 

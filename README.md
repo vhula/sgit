@@ -47,7 +47,7 @@ Follow these steps to install `sgit` manually:
     Options
             -h, --help                      print usage
             -c, --configure                 configure default aliases
-            --local                         apply configuration for the current user only
+            --global-off                    apply configuration for the current user only
     ```
 
 ### Generic configuration
@@ -59,19 +59,27 @@ Follow these steps to install `sgit` manually:
     
 2. Configure email:
 
-    `$sgit --email "<Your Email"`
+    `$sgit --email "<Your Email>"`
     
-    `$sgit -e "<Your Email"`
+    `$sgit -e "<Your Email>"`
     
   Multiple options can be applied simultaneously:
 
    `$sgit -u "<Your Name>" -e "<Your Email>" --editor "vim"`
 
 ### Alias configuration
-TBD
+1. Configure all supported aliases:
+
+    `$sgit --configure`
+    
+    `$sgit -c`
 
 #### Supported aliases
-TBD
+(More will be added later)
+|Alias     |Command            |Description|
+|----------|:-----------------:|----------:|
+|`s`       |`status`           |           |
+|`pr`      |`pull --rebase`    |           |
 
 ### Contributions and Development
 TBD
