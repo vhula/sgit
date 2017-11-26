@@ -137,6 +137,12 @@ This command results into:
 | `hr`       | `reset --hard HEAD`        |             |
 | `hr1`      | `reset --hard HEAD~1`      |             |
 | `hr2`      | `reset --hard HEAD~2`      |             |
+| `l`        | `log`                      |             |
+| `l1`       | `log -1`                   |             |
+| `l2`       | `log -2`                   |             |
+| `l3`       | `log -3`                   |             |
+| `l4`       | `log -4`                   |             |
+| `l5`       | `log -5`                   |             |
 
 #### Commands
 1. List all pre-defined aliases:
@@ -165,6 +171,12 @@ This command results into:
         hr=reset --hard HEAD
         hr1=reset --hard HEAD~1
         hr2=reset --hard HEAD~2
+        l=log
+        l1=log -1
+        l2=log -2
+        l3=log -3
+        l4=log -4
+        l5=log -5
 
 </p>
 </details>
