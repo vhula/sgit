@@ -29,7 +29,7 @@ Follow these steps to install `sgit` manually:
 
 ## Usage
 
-    `$sgit [ARGUMENT VALUE]... [OPTION]...`
+    $sgit [ARGUMENT VALUE]... [OPTION]...
 
 1. Help
 
@@ -58,7 +58,6 @@ To configure git username, email, default editor and pre-defined aliases:
     
 Later command results into:
     
-    ```
     [core]
         editor = vim
     ...
@@ -73,7 +72,6 @@ Later command results into:
             cpn = commit --amend --no-edit
             ...
     ...
-    ```
 
 ### Generic configuration
 1. Configure username:
@@ -110,6 +108,7 @@ Later command results into:
 | `c`        | `commit`                   |             |
 | `cp`       | `commit --amend`           | Amend previous commit            |
 | `cpn`      | `commit --amend --no-edit` | Amend previous commit without editing the commit message |
+| `ch`       | `checkout`                 |             |
 
 ### Contributions and Development
 
