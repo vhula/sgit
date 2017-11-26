@@ -37,17 +37,19 @@ Follow these steps to install `sgit` manually:
     
     ```
     Usage: sgit [ARGUMENT VALUE]... [OPTION]...
-    Sets up different aliases for git command
     All options are applied globaly by default (git config --global)
     
     Arguments:
             -u, --username                  name of the user for git env
             -e, --email                     email of the user for git env
             --editor                        git editor
-    Options
+    Options:
             -h, --help                      print usage
             -c, --configure                 configure default aliases
             --global-off                    apply configuration for the current user only
+    Commands:
+    Arguments, options, and commands that are not listed below, are ignored by the commands
+            list-aliases                    list supported aliases
     ```
 
 ### One-time configuration
@@ -112,14 +114,32 @@ Later command results into:
 | `f`        | `fetch`                    |             |
 | `m`        | `merge`                    |             |
 
-### Contributions and Development
+### Commands
+1. List all pre-defined aliases:
 
-#### Contribution
+    `$sgit list-aliases`
+    
+    ```
+    Supported aliases list:
+
+        s=status
+        pr=pull --rebase
+        c=commit
+        cp=commit --amend
+        cpn=commit --amend --no-edit
+        ch=checkout
+        f=fetch
+        m=merge
+    ```
+
+## Contributions and Development
+
+### Contribution
 
 1. Create an issue (what you want to see in this tool)
 2. Assign any issue to yourself
 3. Create a pull request
 
-#### Development
+### Development
 
 What suites you best :)

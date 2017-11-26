@@ -2,17 +2,19 @@
 
 function help() {
     echo "Usage: sgit [ARGUMENT VALUE]... [OPTION]..."
-    echo "Sets up different aliases for git command"
     echo "All options are applied globaly by default (git config --global)"
     echo ""
     echo "Arguments:"
     echo -e "\t-u, --username\t\t\tname of the user for git env"
     echo -e "\t-e, --email\t\t\temail of the user for git env"
     echo -e "\t--editor\t\t\tgit editor"
-    echo "Options"
+    echo "Options:"
     echo -e "\t-h, --help\t\t\tprint usage"
     echo -e "\t-c, --configure\t\t\tconfigure default aliases"
     echo -e "\t--global-off\t\t\tapply configuration for the current user only"
+    echo "Commands:"
+    echo "Arguments, options, and commands that are not listed below, are ignored by the commands"
+    echo -e "\tlist-aliases\t\t\tlist supported aliases"
 }
 
 function aliases_list() {
@@ -81,7 +83,7 @@ case $key in
     GLOBAL_CONFIG=""
     shift
     ;;
-    --aliases-list)
+    list-aliases)
     aliases_list
     exit 0
     ;;
