@@ -15,6 +15,19 @@ function help() {
     echo -e "\t--global-off\t\t\tapply configuration for the current user only"
 }
 
+function aliases_list() {
+  echo ""
+  echo "Supported aliases list:"
+  echo ""
+  while read -r line || [[ -n "$line" ]]; do
+    echo "${line}" | grep --silent --regexp "^\s*$"
+    if [ ! "$?" -eq 0 ]; then
+      echo -e "\t${line}"
+    fi
+  done < "${SCRIPTPATH}/config/aliases.properties"
+  echo ""
+}
+
 if [ $# -eq 0 ]; then
   echo "no arguments are specified"
   echo ""
@@ -68,6 +81,10 @@ case $key in
     GLOBAL_CONFIG=""
     shift
     ;;
+    --aliases-list)
+    aliases_list
+    exit 0
+    ;;
     *)
     echo "unknown option or argument: ${1}"
     echo ""
@@ -85,8 +102,11 @@ if [ "${CONFIGURE_ALIASES}" = "yes" ]; then
   echo ""
   echo "aliases configuration..."
   while read -r line || [[ -n "$line" ]]; do
-    name=$(echo "$line" | sed --regexp-extended "s/(([^=]+)=(.*))/\2/")
-    value=$(echo "$line" | sed --regexp-extended "s/(([^=]+)=(.*))/\3/")
-    configure_if_not_empty "alias.${name}" "${value}"
+    echo "${line}" | grep --silent --regexp "^\s*$"
+    if [ ! "$?" -eq 0 ]; then
+      name=$(echo "$line" | sed --regexp-extended "s/(([^=]+)=(.*))/\2/")
+      value=$(echo "$line" | sed --regexp-extended "s/(([^=]+)=(.*))/\3/")
+      configure_if_not_empty "alias.${name}" "${value}"
+    fi
   done < "${SCRIPTPATH}/config/aliases.properties"
 fi
