@@ -113,6 +113,8 @@ Later command results into:
 | `ch`       | `checkout`                 |             |
 | `f`        | `fetch`                    |             |
 | `m`        | `merge`                    |             |
+| `aa`       | `add --all`                | Add all changed files |
+| `ac`       | `add .`                    | Add current directory to staged area |
 
 ### Commands
 1. List all pre-defined aliases:
