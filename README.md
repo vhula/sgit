@@ -117,6 +117,10 @@ This command results into:
 
 ##### Supported aliases
 
+<details>
+ <summary>Expand</summary>
+<p>
+
 (More will be added later)
 
 | Alias      | Command                    | Description |
@@ -143,6 +147,9 @@ This command results into:
 | `l3`       | `log -3`                   |             |
 | `l4`       | `log -4`                   |             |
 | `l5`       | `log -5`                   |             |
+
+</p>
+</details>
 
 #### Commands
 1. List all pre-defined aliases:
