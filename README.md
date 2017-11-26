@@ -64,6 +64,7 @@ Follow these steps to install `sgit` manually:
 | Shortcut   | Command                    | Description |
 | ---------- | -------------------------- | ----------- |
 | `s`        | `git status`               |             |    
+| `gpr`      | `git pull --rebase`        |             | 
 
 ### sgit tool
 
