@@ -7,12 +7,13 @@ This is a tool for managing git configuration easily
   * [Installation](#installation)
     * [Manual installation](#manual-installation)
   * [Usage](#usage)
-    * [One-time configuration](#one-time-configuration)
-    * [Generic configuration](#generic-configuration)
-    * [Alias configuration](#alias-configuration)
-      * [Supported aliases](#supported-aliases)
+    * [Shortcuts for common commands](shortcuts-for-common-commands)
+    * [sgit tool](#sgit)
+      * [One-time configuration](#one-time-configuration)
+      * [Generic configuration](#generic-configuration)
+      * [Alias configuration](#alias-configuration)
+        * [Supported aliases](#supported-aliases)
   * [Contributions and Development](#contributions-and-development) 
-
 
 ## Installation
 
@@ -25,9 +26,12 @@ Follow these steps to install `sgit` manually:
     Assuming that this repository cloned into `/usr/local/bin/sgit/` directory:
     
     `export PATH=$PATH:/usr/local/bin/sgit/scripts`
-    
 
 ## Usage
+
+<details>
+ <summary>Common usage</summary>
+<p>
 
     $sgit [ARGUMENT VALUE]... [OPTION]...
 
@@ -52,13 +56,24 @@ Follow these steps to install `sgit` manually:
             list-aliases                    list supported aliases
     ```
 
-### One-time configuration
+</p>
+</details>
+
+### Shortcuts for common commands
+
+| Shortcut   | Command                    | Description |
+| ---------- | -------------------------- | ----------- |
+| `s`        | `git status`               |             |    
+
+### sgit tool
+
+#### One-time configuration
 
 To configure git username, email, default editor and pre-defined aliases:
 
     $sgit --username "Your Name" --email "Your Email" --editor vim --configure
     
-Later command results into:
+This command results into:
     
     [core]
         editor = vim
@@ -75,7 +90,7 @@ Later command results into:
             ...
     ...
 
-### Generic configuration
+#### Generic configuration
 1. Configure username:
 
     `$sgit --username "<Your Name>"`
@@ -92,14 +107,14 @@ Later command results into:
 
    `$sgit -u "<Your Name>" -e "<Your Email>" --editor "vim"`
 
-### Alias configuration
+#### Alias configuration
 1. Configure all supported aliases:
 
     `$sgit --configure`
     
     `$sgit -c`
 
-#### Supported aliases
+##### Supported aliases
 
 (More will be added later)
 
@@ -122,12 +137,15 @@ Later command results into:
 | `hr1`      | `reset --hard HEAD~1`      |             |
 | `hr2`      | `reset --hard HEAD~2`      |             |
 
-### Commands
+#### Commands
 1. List all pre-defined aliases:
 
     `$sgit list-aliases`
     
-    ```
+<details>
+ <summary>Result of the command</summary>
+<p>
+
     Supported aliases list:
 
         s=status
@@ -138,7 +156,17 @@ Later command results into:
         ch=checkout
         f=fetch
         m=merge
-    ```
+        aa=add --all
+        ac=add .
+        sr=reset HEAD
+        sr1=reset HEAD~1
+        sr2=reset HEAD~2
+        hr=reset --hard HEAD
+        hr1=reset --hard HEAD~1
+        hr2=reset --hard HEAD~2
+
+</p>
+</details>
 
 ## Contributions and Development
 
