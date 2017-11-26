@@ -109,6 +109,8 @@ Later command results into:
 | `cp`       | `commit --amend`           | Amend previous commit            |
 | `cpn`      | `commit --amend --no-edit` | Amend previous commit without editing the commit message |
 | `ch`       | `checkout`                 |             |
+| `f`        | `fetch`                    |             |
+| `m`        | `merge`                    |             |
 
 ### Contributions and Development
 
