@@ -7,7 +7,7 @@ This is a tool for managing git configuration easily
   * [Installation](#installation)
     * [Manual installation](#manual-installation)
   * [Usage](#usage)
-    * [Shortcuts for common commands](Shortcuts-for-common-commands)
+    * [Shortcuts for common commands](#shortcuts-for-common-commands)
     * [sgit tool](#sgit-tool)
       * [One-time configuration](#one-time-configuration)
       * [Generic configuration](#generic-configuration)
