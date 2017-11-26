@@ -115,6 +115,12 @@ Later command results into:
 | `m`        | `merge`                    |             |
 | `aa`       | `add --all`                | Add all changed files |
 | `ac`       | `add .`                    | Add current directory to staged area |
+| `sr`       | `reset HEAD`               |             |
+| `sr1`      | `reset HEAD~1`             |             |
+| `sr2`      | `reset HEAD~2`             |             |
+| `hr`       | `reset --hard HEAD`        |             |
+| `hr1`      | `reset --hard HEAD~1`      |             |
+| `hr2`      | `reset --hard HEAD~2`      |             |
 
 ### Commands
 1. List all pre-defined aliases:
