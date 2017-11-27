@@ -1,114 +1,105 @@
 #!/bin/bash
 
-function help() {
-    echo "Usage: sgit [ARGUMENT VALUE]... [OPTION]..."
-    echo "All options are applied globaly by default (git config --global)"
-    echo ""
-    echo "Arguments:"
-    echo -e "\t-u, --username\t\t\tname of the user for git env"
-    echo -e "\t-e, --email\t\t\temail of the user for git env"
-    echo -e "\t--editor\t\t\tgit editor"
-    echo "Options:"
-    echo -e "\t-h, --help\t\t\tprint usage"
-    echo -e "\t-c, --configure\t\t\tconfigure default aliases"
-    echo -e "\t--global-off\t\t\tapply configuration for the current user only"
-    echo "Commands:"
-    echo "Arguments, options, and commands that are not listed below, are ignored by the commands"
-    echo -e "\tlist-aliases\t\t\tlist supported aliases"
-}
-
-function aliases_list() {
-  echo ""
-  echo "Supported aliases list:"
-  echo ""
-  while read -r line || [[ -n "$line" ]]; do
-    echo "${line}" | grep --silent --regexp "^\s*$"
-    if [ ! "$?" -eq 0 ]; then
-      echo -e "\t${line}"
-    fi
-  done < "${SCRIPTPATH}/config/aliases.properties"
-  echo ""
-}
-
 if [ $# -eq 0 ]; then
   echo "no arguments are specified"
   echo ""
-  help
   exit 1
 fi
 
-CONFIG_COMMAND="git config"
-GLOBAL_CONFIG="--global"
+ARGS_SIZE=$#
+
+TOOL_NAME="${1}"
 
 SCRIPTPATH="$( cd "$(dirname "$0")" ; pwd -P )"
 
-function configure_if_not_empty() {
-    CONFIG_NAME="${1}"
-    CONFIG_VALUE="${2}"
-    if [ ! -z "${CONFIG_VALUE}" ]; then
-      CMD="${CONFIG_COMMAND} ${GLOBAL_CONFIG} ${CONFIG_NAME} \"${CONFIG_VALUE}\""
-      eval "${CMD}"
-      echo -e "\t'${CONFIG_NAME}' is set to \"${CONFIG_VALUE}\""
-    fi
+source "${SCRIPTPATH}/internal/logs.sh"
+
+function help() {
+    echo "Usage: sgit <command> [ARGUMENT VALUE]... [OPTION]..."
+    echo ""
+    echo "Global options:"
+    echo -e "\t-h, --help\t\t\tprint usage"
+    echo -e "\t-v, --verbose\t\t\tverbose mode"
+    echo ""
+    echo -e "Available commands:"
+    echo -e "\tlist\t\t\t\tprints lists of different objects(tools, git aliases)"
+    echo -e "\tconfigure\t\t\tconfigures git aliases, username, email, etc."
+    echo -e "\tExecute 'sgit <command> --help' for more information about a command"
 }
 
-while [[ $# -gt 0 ]]
-do
-key="$1"
-case $key in
-    -h|--help)
-    help
-    exit 0
-    ;;
-    -u|--username)
-    CONFIG_USERNAME="$2"
-    shift
-    shift
-    ;;
-    -e|--email)
-    CONFIG_EMAIL="$2"
-    shift
-    shift
-    ;;
-    --editor)
-    CORE_EDITOR="$2"
-    shift
-    shift
-    ;;
-    -c|--configure)
-    CONFIGURE_ALIASES="yes"
-    shift
-    ;;
-    --global-off)
-    GLOBAL_CONFIG=""
-    shift
-    ;;
-    list-aliases)
-    aliases_list
-    exit 0
-    ;;
-    *)
-    echo "unknown option or argument: ${1}"
-    echo ""
-    help
-    exit 1
-    ;;
-esac
-done
-echo "configuration..."
-configure_if_not_empty "user.name" "${CONFIG_USERNAME}"
-configure_if_not_empty "user.email" "${CONFIG_EMAIL}"
-configure_if_not_empty "core.editor" "${CORE_EDITOR}"
-
-if [ "${CONFIGURE_ALIASES}" = "yes" ]; then
-  echo ""
-  echo "aliases configuration..."
+function source_tool() {
+  TOOL_NAME="${1}"
+  SOURCED="no"
   while read -r line || [[ -n "$line" ]]; do
     echo "${line}" | grep --silent --regexp "^\s*$"
     if [ ! "$?" -eq 0 ]; then
       name=$(echo "$line" | sed --regexp-extended "s/(([^=]+)=(.*))/\2/")
       value=$(echo "$line" | sed --regexp-extended "s/(([^=]+)=(.*))/\3/")
-      configure_if_not_empty "alias.${name}" "${value}"
+      if [ "${name}" == "${TOOL_NAME}" ]; then
+        source "${SCRIPTPATH}/tool/${value}"
+        SOURCED="yes"
+        break
+      fi
     fi
-  done < "${SCRIPTPATH}/config/aliases.properties"
+  done < "${SCRIPTPATH}/config/commands.properties"
+  if [ "${SOURCED}" == "yes" ]; then
+    return 0
+  else
+    return 1
+  fi
+}
+
+source_tool "${TOOL_NAME}"
+
+while [[ $# -gt 0 ]]
+do
+key="${1}"
+case $key in
+    -h|--help)
+    PRINT_HELP="yes"
+    shift
+    ;;
+    -v|--verbose)
+    VERBOSE_MODE="yes"
+    shift
+    ;;
+    *)
+    if [ $SOURCED == "yes" ]; then
+      tool_args "${1}" "${2}"
+      if [ ! $? -eq 0 ]; then
+        log_warn "unrecognized option ${1}"
+        shift
+      else
+        while [ "${SHIFT_TIMES}" -gt 0 ]; do
+          shift
+          SHIFT_TIMES=$[$SHIFT_TIMES-1]
+        done
+      fi
+    else
+      if [ "${ARGS_SIZE}" -eq "$#" ]; then
+        log_error "command ${TOOL_NAME} is not recongnized"
+        echo ""
+        help
+        exit 1
+      fi
+      log_warn "unrecognized option ${1}"
+    fi
+    ;;
+esac
+done
+
+if [ "${VERBOSE_MODE}" == "yes" ]; then
+  LOG_LEVEL="${LOG_LEVEL_INFO}"
 fi
+
+if [[ "${PRINT_HELP}" == "yes" && "${SOURCED}" != "yes" ]]; then
+  help
+  exit 0
+fi
+
+if [[ "${PRINT_HELP}" == "yes" && "${SOURCED}" == "yes" ]]; then
+  tool_help
+  exit 0
+fi
+
+tool_execute
