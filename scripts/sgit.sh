@@ -1,8 +1,11 @@
 #!/bin/bash
 
+SCRIPTPATH="$( cd "$(dirname "$0")" ; pwd -P )"
+
+source "${SCRIPTPATH}/internal/logs.sh"
+
 if [ $# -eq 0 ]; then
-  echo "no arguments are specified"
-  echo ""
+  log_error "no arguments are specified"
   exit 1
 fi
 
@@ -10,16 +13,14 @@ ARGS_SIZE=$#
 
 TOOL_NAME="${1}"
 
-SCRIPTPATH="$( cd "$(dirname "$0")" ; pwd -P )"
-
-source "${SCRIPTPATH}/internal/logs.sh"
-
 function help() {
     echo "Usage: sgit <command> [ARGUMENT VALUE]... [OPTION]..."
     echo ""
     echo "Global options:"
     echo -e "\t-h, --help\t\t\tprint usage"
     echo -e "\t-v, --verbose\t\t\tverbose mode"
+    echo -e "\t-q, --quiet\t\t\tonly errors are printed"
+    echo -e "\t--silent\t\t\tall messages are disabled"
     echo ""
     echo -e "Available commands:"
     echo -e "\tlist\t\t\t\tprints lists of different objects(tools, git aliases)"
@@ -63,6 +64,14 @@ case $key in
     VERBOSE_MODE="yes"
     shift
     ;;
+    -q|--quiet)
+    LOG_LEVEL="${LOG_LEVEL_ERR}"
+    shift
+    ;;
+    --silent)
+    LOG_LEVEL="${LOG_LEVEL_OFF}"
+    shift
+    ;;
     *)
     if [ $SOURCED == "yes" ]; then
       tool_args "${1}" "${2}"
@@ -78,7 +87,6 @@ case $key in
     else
       if [ "${ARGS_SIZE}" -eq "$#" ]; then
         log_error "command ${TOOL_NAME} is not recongnized"
-        echo ""
         help
         exit 1
       fi
@@ -100,6 +108,11 @@ fi
 if [[ "${PRINT_HELP}" == "yes" && "${SOURCED}" == "yes" ]]; then
   tool_help
   exit 0
+fi
+
+if [ ${SOURCED} == "no" ]; then
+  log_error "command ${TOOL_NAME} is not recongnized"
+  exit 1
 fi
 
 tool_execute

@@ -65,7 +65,6 @@ function tool_execute() {
     configure_if_not_empty "core.editor" "${_EDITOR}"
     
     if [ "${CONFIGURE_ALIASES}" = "yes" ]; then
-      echo ""
       log_info "aliases configuration..."
       while read -r line || [[ -n "$line" ]]; do
         echo "${line}" | grep --silent --regexp "^\s*$"
