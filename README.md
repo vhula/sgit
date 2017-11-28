@@ -3,21 +3,22 @@
 This is a tool for managing git configuration easily
 
 ## Table of contents
-  * [Table of contents](#table-of-contents)
+  * [Table of Contents](#table-of-contents)
   * [Installation](#installation)
-    * [Manual installation](#manual-installation)
-  * [Usage](#usage)
-    * [Shortcuts for common commands](#shortcuts-for-common-commands)
-    * [sgit configuration tool](#sgit-configuration-tool)
-      * [One-time configuration](#one-time-configuration)
-      * [Generic configuration](#generic-configuration)
-      * [Alias configuration](#alias-configuration)
-        * [Supported aliases](#supported-aliases)
+    * [Manual Installation](#manual-installation)
+  * [Shortcuts for Common Commands](#shortcuts-for-common-commands)
+  * [`sgit` Usage](#sgit-usage)
+    * [Commands](#commands)
+    * [`sgit` Configuration Command](#sgit-configuration-command)
+      * [One-Time Configuration](#one-time-configuration)
+      * [Generic Configuration](#generic-configuration)
+      * [Alias Configuration](#alias-configuration)
+        * [Supported Aliases](#supported-aliases)
   * [Contributions and Development](#contributions-and-development) 
 
 ## Installation
 
-### Manual installation
+### Manual Installation
 
 Follow these steps to install `sgit` manually:
 1. clone this repository
@@ -27,7 +28,14 @@ Follow these steps to install `sgit` manually:
     
     `export PATH=$PATH:/usr/local/bin/sgit/scripts`
 
-## Usage
+## Shortcuts for Common Commands
+
+| Shortcut   | Command                    | Description |
+| ---------- | -------------------------- | ----------- |
+| `sgit-s`   | `git status`               |             |    
+| `sgit-pr`  | `git pull --rebase`        |             | 
+
+## `sgit` Usage
 
 <details>
  <summary>Common usage</summary>
@@ -57,98 +65,8 @@ Follow these steps to install `sgit` manually:
 </p>
 </details>
 
-### Shortcuts for common commands
+### Commands
 
-| Shortcut   | Command                    | Description |
-| ---------- | -------------------------- | ----------- |
-| `sgit-s`   | `git status`               |             |    
-| `sgit-pr`  | `git pull --rebase`        |             | 
-
-### sgit configuration tool
-
-#### One-time configuration
-
-To configure git username, email, default editor and pre-defined aliases:
-
-    $sgit configure --username "Your Name" --email "Your Email" --editor vim
-    
-This command results into:
-    
-    [core]
-        editor = vim
-    ...
-    [user]
-            name = Your Name
-            email = Your Email
-    [alias]
-            s = status
-            pr = pull --rebase
-            c = commit
-            cp = commit --amend
-            cpn = commit --amend --no-edit
-            ...
-    ...
-
-#### Generic configuration
-1. Configure username:
-
-    `$sgit configure --username "<Your Name>"`
-    
-    `$sgit configure -u "<Your Name>"`
-    
-2. Configure email:
-
-    `$sgit configure --email "<Your Email>"`
-    
-    `$sgit configure -e "<Your Email>"`
-    
-  Multiple options can be applied simultaneously:
-
-   `$sgit configure -u "<Your Name>" -e "<Your Email>" --editor "vim"`
-
-#### Alias configuration
-1. Configure all supported aliases:
-
-    `$sgit configure`
-    
-
-##### Supported aliases
-
-<details>
- <summary>Expand</summary>
-<p>
-
-(More will be added later)
-
-| Alias      | Command                    | Description |
-| ---------- | -------------------------- | ----------- |
-| `s`        | `status`                   |             |
-| `pr`       | `pull --rebase`            |             |
-| `c`        | `commit`                   |             |
-| `cp`       | `commit --amend`           | Amend previous commit            |
-| `cpn`      | `commit --amend --no-edit` | Amend previous commit without editing the commit message |
-| `ch`       | `checkout`                 |             |
-| `f`        | `fetch`                    |             |
-| `m`        | `merge`                    |             |
-| `aa`       | `add --all`                | Add all changed files |
-| `ac`       | `add .`                    | Add current directory to staged area |
-| `sr`       | `reset HEAD`               |             |
-| `sr1`      | `reset HEAD~1`             |             |
-| `sr2`      | `reset HEAD~2`             |             |
-| `hr`       | `reset --hard HEAD`        |             |
-| `hr1`      | `reset --hard HEAD~1`      |             |
-| `hr2`      | `reset --hard HEAD~2`      |             |
-| `l`        | `log`                      |             |
-| `l1`       | `log -1`                   |             |
-| `l2`       | `log -2`                   |             |
-| `l3`       | `log -3`                   |             |
-| `l4`       | `log -4`                   |             |
-| `l5`       | `log -5`                   |             |
-
-</p>
-</details>
-
-#### Commands
 1. List all pre-defined aliases:
 
     `$sgit list --aliases`
@@ -200,6 +118,91 @@ This command results into:
     
     Execute 'sgit <command> --help' for details
     
+</p>
+</details>
+
+
+### `sgit` Configuration Command
+
+#### One-Time Configuration
+
+To configure git username, email, default editor and pre-defined aliases:
+
+    $sgit configure --username "Your Name" --email "Your Email" --editor vim
+    
+This command results into:
+    
+    [core]
+        editor = vim
+    ...
+    [user]
+            name = Your Name
+            email = Your Email
+    [alias]
+            s = status
+            pr = pull --rebase
+            c = commit
+            cp = commit --amend
+            cpn = commit --amend --no-edit
+            ...
+    ...
+
+#### Generic Configuration
+1. Configure username:
+
+    `$sgit configure --username "<Your Name>"`
+    
+    `$sgit configure -u "<Your Name>"`
+    
+2. Configure email:
+
+    `$sgit configure --email "<Your Email>"`
+    
+    `$sgit configure -e "<Your Email>"`
+    
+  Multiple options can be applied simultaneously:
+
+   `$sgit configure -u "<Your Name>" -e "<Your Email>" --editor "vim"`
+
+#### Alias Configuration
+1. Configure all supported aliases:
+
+    `$sgit configure`
+    
+
+##### Supported Aliases
+
+<details>
+ <summary>Expand</summary>
+<p>
+
+(More will be added later)
+
+| Alias      | Command                    | Description |
+| ---------- | -------------------------- | ----------- |
+| `s`        | `status`                   |             |
+| `pr`       | `pull --rebase`            |             |
+| `c`        | `commit`                   |             |
+| `cp`       | `commit --amend`           | Amend previous commit            |
+| `cpn`      | `commit --amend --no-edit` | Amend previous commit without editing the commit message |
+| `ch`       | `checkout`                 |             |
+| `f`        | `fetch`                    |             |
+| `m`        | `merge`                    |             |
+| `aa`       | `add --all`                | Add all changed files |
+| `ac`       | `add .`                    | Add current directory to staged area |
+| `sr`       | `reset HEAD`               |             |
+| `sr1`      | `reset HEAD~1`             |             |
+| `sr2`      | `reset HEAD~2`             |             |
+| `hr`       | `reset --hard HEAD`        |             |
+| `hr1`      | `reset --hard HEAD~1`      |             |
+| `hr2`      | `reset --hard HEAD~2`      |             |
+| `l`        | `log`                      |             |
+| `l1`       | `log -1`                   |             |
+| `l2`       | `log -2`                   |             |
+| `l3`       | `log -3`                   |             |
+| `l4`       | `log -4`                   |             |
+| `l5`       | `log -5`                   |             |
+
 </p>
 </details>
 
