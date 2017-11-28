@@ -3,21 +3,23 @@
 This is a tool for managing git configuration easily
 
 ## Table of contents
-  * [Table of contents](#table-of-contents)
+  * [Table of Contents](#table-of-contents)
   * [Installation](#installation)
-    * [Manual installation](#manual-installation)
-  * [Usage](#usage)
-    * [Shortcuts for common commands](#shortcuts-for-common-commands)
-    * [sgit tool](#sgit-tool)
-      * [One-time configuration](#one-time-configuration)
-      * [Generic configuration](#generic-configuration)
-      * [Alias configuration](#alias-configuration)
-        * [Supported aliases](#supported-aliases)
+    * [Manual Installation](#manual-installation)
+  * [Shortcuts for Common Commands](#shortcuts-for-common-commands)
+  * [`sgit` Usage](#sgit-usage)
+    * [sgit Commands](#sgit-commands)
+    * [List Command](#list-command)
+    * [Configuration Command](#configuration-command)
+      * [One-Time Configuration](#one-time-configuration)
+      * [Generic Configuration](#generic-configuration)
+      * [Alias Configuration](#alias-configuration)
+        * [Supported Aliases](#supported-aliases)
   * [Contributions and Development](#contributions-and-development) 
 
 ## Installation
 
-### Manual installation
+### Manual Installation
 
 Follow these steps to install `sgit` manually:
 1. clone this repository
@@ -27,52 +29,114 @@ Follow these steps to install `sgit` manually:
     
     `export PATH=$PATH:/usr/local/bin/sgit/scripts`
 
-## Usage
-
-<details>
- <summary>Common usage</summary>
-<p>
-
-    $sgit [ARGUMENT VALUE]... [OPTION]...
-
-1. Help
-
-    `$sgit --help`
-    
-    ```
-    Usage: sgit [ARGUMENT VALUE]... [OPTION]...
-    All options are applied globaly by default (git config --global)
-    
-    Arguments:
-            -u, --username                  name of the user for git env
-            -e, --email                     email of the user for git env
-            --editor                        git editor
-    Options:
-            -h, --help                      print usage
-            -c, --configure                 configure default aliases
-            --global-off                    apply configuration for the current user only
-    Commands:
-    Arguments, options, and commands that are not listed below, are ignored by the commands
-            list-aliases                    list supported aliases
-    ```
-
-</p>
-</details>
-
-### Shortcuts for common commands
+## Shortcuts for Common Commands
 
 | Shortcut   | Command                    | Description |
 | ---------- | -------------------------- | ----------- |
 | `sgit-s`   | `git status`               |             |    
 | `sgit-pr`  | `git pull --rebase`        |             | 
 
-### sgit tool
+## `sgit` Usage
 
-#### One-time configuration
+<details>
+ <summary>Common usage</summary>
+<p>
+
+    $sgit [COMMAND] [ARGUMENT VALUE]... [OPTION]...
+
+1. Help
+
+    `$sgit --help`
+    
+    ```
+    Usage: sgit <command> [ARGUMENT VALUE]... [OPTION]...
+    
+    Global options:
+            -h, --help                      print usage
+            -v, --verbose                   verbose mode
+            -q, --quiet                     only errors are printed
+            --silent                        all messages are disabled
+    
+    Available commands:
+            list                            prints lists of different objects(tools, git aliases)
+            configure                       configures git aliases, username, email, etc.
+            Execute 'sgit <command> --help' for more information about a command
+    ```
+
+</p>
+</details>
+
+### sgit Commands
+
+| Command      | Description                |
+| ------------ | -------------------------- |
+| `list`       | Print different lists (list of available commands, pre-defined aliases)         |
+| `configure`  | Configures multiple things in git        |
+
+### List Command
+
+1. List all pre-defined aliases:
+
+    `$sgit list --aliases`
+    
+<details>
+ <summary>Result of the command</summary>
+<p>
+
+    Aliases...
+    ----------
+    s=status
+    pr=pull --rebase
+    c=commit
+    cp=commit --amend
+    cpn=commit --amend --no-edit
+    ch=checkout
+    f=fetch
+    m=merge
+    aa=add --all
+    ac=add .
+    sr=reset HEAD
+    sr1=reset HEAD~1
+    sr2=reset HEAD~2
+    hr=reset --hard HEAD
+    hr1=reset --hard HEAD~1
+    hr2=reset --hard HEAD~2
+    l=log
+    l1=log -1
+    l2=log -2
+    l3=log -3
+    l4=log -4
+    l5=log -5
+
+</p>
+</details>
+
+2. List commands
+
+    `$sgit list --commands`
+    
+<details>
+ <summary>Result of the command</summary>
+<p>
+
+    Commands...
+    -----------
+    list
+    configure
+    
+    Execute 'sgit <command> --help' for details
+    
+</p>
+</details>
+
+
+### Configuration Command
+
+#### One-Time Configuration
 
 To configure git username, email, default editor and pre-defined aliases:
 
-    $sgit --username "Your Name" --email "Your Email" --editor vim --configure
+    $sgit configure --username "Your Name" --email "Your Email" --editor vim
     
 This command results into:
     
@@ -91,31 +155,30 @@ This command results into:
             ...
     ...
 
-#### Generic configuration
+#### Generic Configuration
 1. Configure username:
 
-    `$sgit --username "<Your Name>"`
+    `$sgit configure --username "<Your Name>"`
     
-    `$sgit -u "<Your Name>"`
+    `$sgit configure -u "<Your Name>"`
     
 2. Configure email:
 
-    `$sgit --email "<Your Email>"`
+    `$sgit configure --email "<Your Email>"`
     
-    `$sgit -e "<Your Email>"`
+    `$sgit configure -e "<Your Email>"`
     
   Multiple options can be applied simultaneously:
 
-   `$sgit -u "<Your Name>" -e "<Your Email>" --editor "vim"`
+   `$sgit configure -u "<Your Name>" -e "<Your Email>" --editor "vim"`
 
-#### Alias configuration
+#### Alias Configuration
 1. Configure all supported aliases:
 
-    `$sgit --configure`
+    `$sgit configure`
     
-    `$sgit -c`
 
-##### Supported aliases
+##### Supported Aliases
 
 <details>
  <summary>Expand</summary>
@@ -147,43 +210,6 @@ This command results into:
 | `l3`       | `log -3`                   |             |
 | `l4`       | `log -4`                   |             |
 | `l5`       | `log -5`                   |             |
-
-</p>
-</details>
-
-#### Commands
-1. List all pre-defined aliases:
-
-    `$sgit list-aliases`
-    
-<details>
- <summary>Result of the command</summary>
-<p>
-
-    Supported aliases list:
-
-        s=status
-        pr=pull --rebase
-        c=commit
-        cp=commit --amend
-        cpn=commit --amend --no-edit
-        ch=checkout
-        f=fetch
-        m=merge
-        aa=add --all
-        ac=add .
-        sr=reset HEAD
-        sr1=reset HEAD~1
-        sr2=reset HEAD~2
-        hr=reset --hard HEAD
-        hr1=reset --hard HEAD~1
-        hr2=reset --hard HEAD~2
-        l=log
-        l1=log -1
-        l2=log -2
-        l3=log -3
-        l4=log -4
-        l5=log -5
 
 </p>
 </details>
