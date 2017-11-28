@@ -1,7 +1,7 @@
 #!/bin/bash
 
 CONFIG_COMMAND="git config"
-_GLOBAL_CONFIG="--global"
+GLOBAL_CONFIG="--global"
 CONFIGURE_ALIASES="yes"
 
 function tool_help() {
@@ -24,19 +24,19 @@ function tool_args() {
       ;;
       -u|--username)
       SHIFT_TIMES=2
-      _USERNAME="${2}"
+      USERNAME_ARG="${2}"
       ;;
       -e|--email)
       SHIFT_TIMES=2
-      _EMAIL="${2}"
+      EMAIL_ARG="${2}"
       ;;
       --editor)
       SHIFT_TIMES=2
-      _EDITOR="${2}"
+      EDITOR_ARG="${2}"
       ;;
       --global-off)
       SHIFT_TIMES=1
-      _GLOBAL_CONFIG=""
+      GLOBAL_CONFIG=""
       ;;
       --alias-off)
       SHIFT_TIMES=1
@@ -53,16 +53,16 @@ function configure_if_not_empty() {
     CONFIG_NAME="${1}"
     CONFIG_VALUE="${2}"
     if [ ! -z "${CONFIG_VALUE}" ]; then
-      CMD="${CONFIG_COMMAND} ${_GLOBAL_CONFIG} ${CONFIG_NAME} \"${CONFIG_VALUE}\""
+      CMD="${CONFIG_COMMAND} ${GLOBAL_CONFIG} ${CONFIG_NAME} \"${CONFIG_VALUE}\""
       eval "${CMD}"
       log_info "\t'${CONFIG_NAME}' is set to \"${CONFIG_VALUE}\""
     fi
 }
 
 function tool_execute() {
-    configure_if_not_empty "user.name" "${_USERNAME}"
-    configure_if_not_empty "user.email" "${_EMAIL}"
-    configure_if_not_empty "core.editor" "${_EDITOR}"
+    configure_if_not_empty "user.name" "${USERNAME_ARG}"
+    configure_if_not_empty "user.email" "${EMAIL_ARG}"
+    configure_if_not_empty "core.editor" "${EDITOR_ARG}"
     
     if [ "${CONFIGURE_ALIASES}" = "yes" ]; then
       log_info "aliases configuration..."

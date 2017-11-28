@@ -8,6 +8,8 @@ function tool_help() {
     echo -e "\t--aliases\t\t\tlist all pre-defined aliases for git"
 }
 
+SGIT_LIST_ARGS_PRESENT="no"
+
 function tool_args() {
     local RETURN_VALUE=0
     case "${1}" in
@@ -17,10 +19,12 @@ function tool_args() {
       --commands)
       SHIFT_TIMES=1
       _TOOLS_LIST="yes"
+      _SGIT_LIST_ARGS_PRESENT="yes"
       ;;
       --aliases)
       SHIFT_TIMES=1
       _ALIASES_LIST="yes"
+      _SGIT_LIST_ARGS_PRESENT="yes"
       ;;
       *)
       RETURN_VALUE=1
@@ -30,6 +34,12 @@ function tool_args() {
 }
 
 function tool_execute() {
+  
+    if [ "${SGIT_LIST_ARGS_PRESENT}" == "no" ]; then
+      log_warn "specify at least one list to print"
+      tool_help
+    fi
+    
     if [ "${_ALIASES_LIST}" == "yes" ]; then
       log_msg "Aliases..."
       log_msg "----------"
