@@ -70,7 +70,7 @@ Follow these steps to install `sgit` manually:
 
 | Command      | Description                |
 | ------------ | -------------------------- |
-| `list`       | Print different lists (list of available commands, pre-defined aliases         |
+| `list`       | Print different lists (list of available commands, pre-defined aliases)         |
 | `configure`  | Configures multiple things in git        |
 
 ### List Command
