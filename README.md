@@ -33,8 +33,9 @@ Follow these steps to install `sgit` manually:
 
 | Shortcut   | Command                    | Description |
 | ---------- | -------------------------- | ----------- |
-| `sgit-s`   | `git status`               |             |    
-| `sgit-pr`  | `git pull --rebase`        |             | 
+| `sg-s`   | `git status`               |             |    
+| `sg-pr`  | `git pull --rebase`        |             | 
+| `sg-aa`  | `git add --all`        |             | 
 
 ## `sgit` Usage
 
