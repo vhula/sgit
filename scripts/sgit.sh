@@ -73,9 +73,9 @@ case $key in
     shift
     ;;
     *)
-    if [ $SOURCED == "yes" ]; then
+    if [ "${SOURCED}" == "yes" ]; then
       tool_args "${1}" "${2}"
-      if [ ! $? -eq 0 ]; then
+      if [ ! "$?" -eq 0 ]; then
         log_warn "unrecognized option ${1}"
         shift
       else
@@ -110,7 +110,7 @@ if [[ "${PRINT_HELP}" == "yes" && "${SOURCED}" == "yes" ]]; then
   exit 0
 fi
 
-if [ ${SOURCED} == "no" ]; then
+if [ "${SOURCED}" == "no" ]; then
   log_error "command ${TOOL_NAME} is not recongnized"
   exit 1
 fi
