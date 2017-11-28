@@ -8,8 +8,9 @@ This is a tool for managing git configuration easily
     * [Manual Installation](#manual-installation)
   * [Shortcuts for Common Commands](#shortcuts-for-common-commands)
   * [`sgit` Usage](#sgit-usage)
-    * [Commands](#commands)
-    * [`sgit` Configuration Command](#sgit-configuration-command)
+    * [sgit Commands](#sgit-commands)
+    * [List Command](#list-command)
+    * [Configuration Command](#configuration-command)
       * [One-Time Configuration](#one-time-configuration)
       * [Generic Configuration](#generic-configuration)
       * [Alias Configuration](#alias-configuration)
@@ -65,7 +66,14 @@ Follow these steps to install `sgit` manually:
 </p>
 </details>
 
-### Commands
+### sgit Commands
+
+| Command      | Description                |
+| ------------ | -------------------------- |
+| `list`       | Print different lists (list of available commands, pre-defined aliases         |
+| `configure`  | Configures multiple things in git        |
+
+### List Command
 
 1. List all pre-defined aliases:
 
@@ -122,7 +130,7 @@ Follow these steps to install `sgit` manually:
 </details>
 
 
-### `sgit` Configuration Command
+### Configuration Command
 
 #### One-Time Configuration
 
