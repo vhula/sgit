@@ -31,10 +31,9 @@ Follow these steps to install `sgit` manually:
 
 ## Shortcuts for Common Commands
 
-| Shortcut   | Command                    | Description |
+| Shortcuts   | Command                    | Description |
 | ---------- | -------------------------- | ----------- |
-| `gis`   | `git status`               |             |    
-| `s`   | `git status`               |             |    
+| `gis`, `s`   | `git status`               |             |    
 | `gipr`  | `git pull --rebase`        |             | 
 | `giaa`  | `git add --all`        |             | 
 
