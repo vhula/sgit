@@ -30,5 +30,29 @@ function tool_args() {
 }
 
 function tool_execute() {
-    echo "TBD"
+    if [ "${_ALIASES_LIST}" == "yes" ]; then
+      log_msg "Aliases..."
+      log_msg "----------"
+      while read -r line || [[ -n "$line" ]]; do
+        echo "${line}" | grep --silent --regexp "^\s*$"
+        if [ ! "$?" -eq 0 ]; then
+          log_msg "${line}"
+        fi
+      done < "${SCRIPTPATH}/config/aliases.properties"
+      log_msg ""
+    fi
+    
+    if [ "${_TOOLS_LIST}" == "yes" ]; then
+      log_msg "Commands..."
+      log_msg "-----------"
+      while read -r line || [[ -n "$line" ]]; do
+        echo "${line}" | grep --silent --regexp "^\s*$"
+        if [ ! "$?" -eq 0 ]; then
+          name=$(echo "$line" | sed --regexp-extended "s/(([^=]+)=(.*))/\2/")
+          log_msg "${name}"
+        fi
+      done < "${SCRIPTPATH}/config/commands.properties"
+      log_msg ""
+      log_msg "Execute 'sgit <command> --help' for details"
+    fi
 }
