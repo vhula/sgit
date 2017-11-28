@@ -4,7 +4,7 @@ function tool_help() {
     echo "list command usage: sgit list [ARGUMENT VALUE]... [OPTION]"
     echo ""
     echo -e "Options:"
-    echo -e "\t--tools\t\t\t\tlist all available shortcuts CLI tools"
+    echo -e "\t--commands\t\t\tlist all available shortcuts CLI tools"
     echo -e "\t--aliases\t\t\tlist all pre-defined aliases for git"
 }
 
@@ -14,7 +14,7 @@ function tool_args() {
       list)
       SHIFT_TIMES=1
       ;;
-      --tools)
+      --commands)
       SHIFT_TIMES=1
       _TOOLS_LIST="yes"
       ;;
