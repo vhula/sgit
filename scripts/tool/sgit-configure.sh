@@ -1,8 +1,8 @@
 #!/bin/bash
 
 CONFIG_COMMAND="git config"
-GLOBAL_CONFIG="--global"
-CONFIGURE_ALIASES="yes"
+GLOBAL_CONFIG=""
+CONFIGURE_GIT_ALIASES="no"
 
 function tool_help() {
     echo "configure command usage: sgit configure [ARGUMENT VALUE]... [OPTION]"
@@ -12,8 +12,8 @@ function tool_help() {
     echo -e "\t-e, --email\t\t\temail of the user for git env"
     echo -e "\t--editor\t\t\tgit editor"
     echo "Options:"
-    echo -e "\t--global-off\t\t\tapply configuration for the current user only"
-    echo -e "\t--alias-off\t\t\tdo not configure git aliases"
+    echo -e "\t--global\t\t\tapply git configuration globaly"
+    echo -e "\t--git-alias\t\t\tconfigure git aliases"
 }
 
 function tool_args() {
@@ -34,13 +34,13 @@ function tool_args() {
       SHIFT_TIMES=2
       EDITOR_ARG="${2}"
       ;;
-      --global-off)
+      --global)
       SHIFT_TIMES=1
-      GLOBAL_CONFIG=""
+      GLOBAL_CONFIG="--global"
       ;;
-      --alias-off)
+      --git-alias)
       SHIFT_TIMES=1
-      CONFIGURE_ALIASES="no"
+      CONFIGURE_GIT_ALIASES="yes"
       ;;
       *)
       RETURN_VALUE=1
@@ -64,7 +64,7 @@ function tool_execute() {
     configure_if_not_empty "user.email" "${EMAIL_ARG}"
     configure_if_not_empty "core.editor" "${EDITOR_ARG}"
     
-    if [ "${CONFIGURE_ALIASES}" = "yes" ]; then
+    if [ "${CONFIGURE_GIT_ALIASES}" = "yes" ]; then
       log_info "aliases configuration..."
       while read -r line || [[ -n "$line" ]]; do
         echo "${line}" | grep --silent --regexp "^\s*$"
@@ -73,6 +73,6 @@ function tool_execute() {
           value=$(echo "$line" | sed --regexp-extended "s/(([^=]+)=(.*))/\3/")
           configure_if_not_empty "alias.${name}" "${value}"
         fi
-      done < "${SCRIPTPATH}/config/aliases.properties"
+      done < "${SCRIPTPATH}/config/git-aliases.properties"
     fi
 }
