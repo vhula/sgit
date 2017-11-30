@@ -3,7 +3,7 @@
 CONFIG_COMMAND="git config"
 GLOBAL_CONFIG=""
 CONFIGURE_GIT_ALIASES="no"
-CONFIGURE_ALIASES="no"
+CONFIGURE_SHORTCUTS="no"
 SHORTCUTS_DIR="${SCRIPTPATH}"
 GIT_ALIAS_UNSET=""
 SHORTCUT_UNSET="no"
@@ -52,7 +52,7 @@ function tool_args() {
       ;;
       --shortcuts)
       SHIFT_TIMES=1
-      CONFIGURE_ALIASES="yes"
+      CONFIGURE_SHORTCUTS="yes"
       ;;
       --unset)
       SHIFT_TIMES=1
@@ -102,7 +102,7 @@ function tool_execute() {
       log_msg ""
     fi
     
-    if [ "${CONFIGURE_ALIASES}" = "yes" ]; then
+    if [ "${CONFIGURE_SHORTCUTS}" = "yes" ]; then
       log_info "aliases configuration..."
       while read -r line || [[ -n "$line" ]]; do
         echo "${line}" | grep --silent --regexp "^\s*$"
