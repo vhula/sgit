@@ -29,13 +29,32 @@ Follow these steps to install `sgit` manually:
     
     `export PATH=$PATH:/usr/local/bin/sgit/scripts`
 
-## Shortcuts for Common Commands
+## Predefined Shortcuts and Aliases for Common Commands
 
-| Shortcuts   | Command                    | Description |
-| ---------- | -------------------------- | ----------- |
-| `gis`, `s`   | `git status`               |             |    
-| `gipr`  | `git pull --rebase`        |             | 
-| `giaa`  | `git add --all`        |             | 
+| Alias      | Shortcut       | Command                    | Description |
+| ---------- | -------------- | -------------------------- | ----------- |
+| `s`        | `gits`         | `git status`                   |             |
+| `pr`       | `gitpr`        | `git pull --rebase`            |             |
+| `c`        | `gitc`         | `git commit`                   |             |
+| `cp`       | `gitcp`        | `git commit --amend`           | Amend previous commit            |
+| `cpn`      | `gitcpn`       | `git commit --amend --no-edit` | Amend previous commit without editing the commit message |
+| `ch`       | `gitch`        | `git checkout`                 |             |
+| `f`        | `gitf`         | `git fetch`                    |             |
+| `m`        | `gitm`         | `git merge`                    |             |
+| `aa`       | `gitaa`        | `git add --all`                | Add all changed files |
+| `ac`       | `gitac`        | `git add .`                    | Add current directory to staged area |
+| `sr`       | `gitsr`        | `git reset HEAD`               |             |
+| `sr1`      | `gitsr1`       | `git reset HEAD~1`             |             |
+| `sr2`      | `gitsr2`       | `git reset HEAD~2`             |             |
+| `hr`       | `githr`        | `git reset --hard HEAD`        |             |
+| `hr1`      | `githr1`       | `git reset --hard HEAD~1`      |             |
+| `hr2`      | `githr2`       | `git reset --hard HEAD~2`      |             |
+| `l`        | `gitl`         | `git log`                      |             |
+| `l1`       | `gitl1`        | `git log -1`                   |             |
+| `l2`       | `gitl2`        | `git log -2`                   |             |
+| `l3`       | `gitl3`        | `git log -3`                   |             |
+| `l4`       | `gitl4`        | `git log -4`                   |             |
+| `l5`       | `gitl5`        | `git log -5`                   |             |
 
 ## `sgit` Usage
 
@@ -137,7 +156,7 @@ Follow these steps to install `sgit` manually:
 
 To configure git username, email, default editor and pre-defined aliases:
 
-    $sgit configure --username "Your Name" --email "Your Email" --editor vim
+    $sgit configure --alias --git-alias --global --username "Your Name" --email "Your Email" --editor vim
     
 This command results into:
     
@@ -157,6 +176,9 @@ This command results into:
     ...
 
 #### Generic Configuration
+
+  Append `--global` option if you want to configure git aliases globally.
+
 1. Configure username:
 
     `$sgit configure --username "<Your Name>"`
@@ -174,46 +196,19 @@ This command results into:
    `$sgit configure -u "<Your Name>" -e "<Your Email>" --editor "vim"`
 
 #### Alias Configuration
-1. Configure all supported aliases:
+1. Configure git aliases:
 
-    `$sgit configure`
+    `$sgit configure --git-alias`
     
+2. Configure shortcuts:
 
-##### Supported Aliases
+    `$sgit configure --alias`
+    
+3. Remove configuration:
 
-<details>
- <summary>Expand</summary>
-<p>
-
-(More will be added later)
-
-| Alias      | Command                    | Description |
-| ---------- | -------------------------- | ----------- |
-| `s`        | `status`                   |             |
-| `pr`       | `pull --rebase`            |             |
-| `c`        | `commit`                   |             |
-| `cp`       | `commit --amend`           | Amend previous commit            |
-| `cpn`      | `commit --amend --no-edit` | Amend previous commit without editing the commit message |
-| `ch`       | `checkout`                 |             |
-| `f`        | `fetch`                    |             |
-| `m`        | `merge`                    |             |
-| `aa`       | `add --all`                | Add all changed files |
-| `ac`       | `add .`                    | Add current directory to staged area |
-| `sr`       | `reset HEAD`               |             |
-| `sr1`      | `reset HEAD~1`             |             |
-| `sr2`      | `reset HEAD~2`             |             |
-| `hr`       | `reset --hard HEAD`        |             |
-| `hr1`      | `reset --hard HEAD~1`      |             |
-| `hr2`      | `reset --hard HEAD~2`      |             |
-| `l`        | `log`                      |             |
-| `l1`       | `log -1`                   |             |
-| `l2`       | `log -2`                   |             |
-| `l3`       | `log -3`                   |             |
-| `l4`       | `log -4`                   |             |
-| `l5`       | `log -5`                   |             |
-
-</p>
-</details>
+    `$sgit configure --alias --unset`
+    
+    `$sgit configure --git-alias --unset`
 
 ## Contributions and Development
 

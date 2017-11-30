@@ -3,6 +3,10 @@
 CONFIG_COMMAND="git config"
 GLOBAL_CONFIG=""
 CONFIGURE_GIT_ALIASES="no"
+CONFIGURE_ALIASES="no"
+SHORTCUTS_DIR="${SCRIPTPATH}"
+GIT_ALIAS_UNSET=""
+SHORTCUT_UNSET="no"
 
 function tool_help() {
     echo "configure command usage: sgit configure [ARGUMENT VALUE]... [OPTION]"
@@ -14,6 +18,8 @@ function tool_help() {
     echo "Options:"
     echo -e "\t--global\t\t\tapply git configuration globaly"
     echo -e "\t--git-alias\t\t\tconfigure git aliases"
+    echo -e "\t--alias\t\t\tconfigure aliases"
+    echo -e "\t--unset\t\t\tremove configuration"
 }
 
 function tool_args() {
@@ -42,6 +48,15 @@ function tool_args() {
       SHIFT_TIMES=1
       CONFIGURE_GIT_ALIASES="yes"
       ;;
+      --alias)
+      SHIFT_TIMES=1
+      CONFIGURE_ALIASES="yes"
+      ;;
+      --unset)
+      SHIFT_TIMES=1
+      UNSET_CONFIG="yes"
+      GIT_ALIAS_UNSET="--unset"
+      ;;
       *)
       RETURN_VALUE=1
       ;;
@@ -53,9 +68,13 @@ function configure_if_not_empty() {
     CONFIG_NAME="${1}"
     CONFIG_VALUE="${2}"
     if [ ! -z "${CONFIG_VALUE}" ]; then
-      CMD="${CONFIG_COMMAND} ${GLOBAL_CONFIG} ${CONFIG_NAME} \"${CONFIG_VALUE}\""
+      CMD="${CONFIG_COMMAND} ${GLOBAL_CONFIG} ${GIT_ALIAS_UNSET} ${CONFIG_NAME} \"${CONFIG_VALUE}\""
       eval "${CMD}"
-      log_info "\t'${CONFIG_NAME}' is set to \"${CONFIG_VALUE}\""
+      if [ "${UNSET_CONFIG}" == "yes" ]; then
+        log_info "\t${CONFIG_NAME} is unset"
+      else
+        log_info "\t'${CONFIG_NAME}' is set to \"${CONFIG_VALUE}\""
+      fi
     fi
 }
 
@@ -65,7 +84,7 @@ function tool_execute() {
     configure_if_not_empty "core.editor" "${EDITOR_ARG}"
     
     if [ "${CONFIGURE_GIT_ALIASES}" = "yes" ]; then
-      log_info "aliases configuration..."
+      log_info "git aliases configuration..."
       while read -r line || [[ -n "$line" ]]; do
         echo "${line}" | grep --silent --regexp "^\s*$"
         if [ ! "$?" -eq 0 ]; then
@@ -73,6 +92,30 @@ function tool_execute() {
           value=$(echo "$line" | sed --regexp-extended "s/(([^=]+)=(.*))/\3/")
           configure_if_not_empty "alias.${name}" "${value}"
         fi
-      done < "${SCRIPTPATH}/config/git-aliases.properties"
+      done < "${SCRIPTPATH}/config/aliases.properties"
+      log_msg ""
+    fi
+    
+    if [ "${CONFIGURE_ALIASES}" = "yes" ]; then
+      log_info "aliases configuration..."
+      while read -r line || [[ -n "$line" ]]; do
+        echo "${line}" | grep --silent --regexp "^\s*$"
+        if [ ! "$?" -eq 0 ]; then
+          name=$(echo "$line" | sed --regexp-extended "s/(([^=]+)=(.*))/\2/")
+          value=$(echo "$line" | sed --regexp-extended "s/(([^=]+)=(.*))/\3/")
+          if [ ! -z "${value}" ]; then
+            SHORTCUT_SCRIPT="${SHORTCUTS_DIR}/git${name}"
+            if [ "${UNSET_CONFIG}" == "yes" ]; then
+              rm "${SHORTCUT_SCRIPT}"
+            else
+              touch "${SHORTCUT_SCRIPT}"
+              chmod a+x "${SHORTCUT_SCRIPT}"
+              echo "#!/bin/bash" >> "${SHORTCUT_SCRIPT}"
+              echo "git ${value}" >> "${SHORTCUT_SCRIPT}"
+              log_info "\t'${name}' is set to \"${value}\""
+            fi
+          fi
+        fi
+      done < "${SCRIPTPATH}/config/aliases.properties"
     fi
 }
