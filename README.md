@@ -6,7 +6,7 @@ Shortcuts for common `git` commands and a tool for managing git configuration ea
   * [Table of Contents](#table-of-contents)
   * [Installation](#installation)
     * [Manual Installation](#manual-installation)
-  * [Predefined Shortcuts and Aliases for Common Commands](#Predefined-Shortcuts-and-Aliases-for-Common-Commands)
+  * [Predefined Shortcuts and Aliases for Common Commands](#predefined-shortcuts-and-aliases-for-common-commands)
   * [`sgit` Usage](#sgit-usage)
     * [sgit Commands](#sgit-commands)
     * [List Command](#list-command)
