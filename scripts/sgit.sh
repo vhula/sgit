@@ -24,7 +24,7 @@ function help() {
     echo ""
     echo -e "Available commands:"
     echo -e "\tlist\t\t\t\tprints lists of different objects(tools, git aliases)"
-    echo -e "\tconfigure\t\t\tconfigures git aliases, username, email, etc."
+    echo -e "\tconfig\t\t\t\tconfigures git aliases, shortcuts, username, email, etc."
     echo -e "\tExecute 'sgit <command> --help' for more information about a command"
 }
 

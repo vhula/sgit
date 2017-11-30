@@ -9,7 +9,7 @@ GIT_ALIAS_UNSET=""
 SHORTCUT_UNSET="no"
 
 function tool_help() {
-    echo "configure command usage: sgit configure [ARGUMENT VALUE]... [OPTION]"
+    echo "config command usage: sgit config [ARGUMENT VALUE]... [OPTION]"
     echo ""
     echo "Arguments:"
     echo -e "\t-u, --username\t\t\tname of the user for git env"
@@ -18,14 +18,14 @@ function tool_help() {
     echo "Options:"
     echo -e "\t--global\t\t\tapply git configuration globaly"
     echo -e "\t--git-alias\t\t\tconfigure git aliases"
-    echo -e "\t--alias\t\t\tconfigure aliases"
-    echo -e "\t--unset\t\t\tremove configuration"
+    echo -e "\t--alias\t\t\t\tconfigure aliases"
+    echo -e "\t--unset\t\t\t\tremove configuration"
 }
 
 function tool_args() {
     local RETURN_VALUE=0
     case "${1}" in
-      configure)
+      config)
       SHIFT_TIMES=1
       ;;
       -u|--username)

@@ -19,12 +19,12 @@ function tool_args() {
       --commands)
       SHIFT_TIMES=1
       _TOOLS_LIST="yes"
-      _SGIT_LIST_ARGS_PRESENT="yes"
+      SGIT_LIST_ARGS_PRESENT="yes"
       ;;
       --aliases)
       SHIFT_TIMES=1
       _ALIASES_LIST="yes"
-      _SGIT_LIST_ARGS_PRESENT="yes"
+      SGIT_LIST_ARGS_PRESENT="yes"
       ;;
       *)
       RETURN_VALUE=1

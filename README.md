@@ -78,7 +78,7 @@ Follow these steps to install `sgit` manually:
     
     Available commands:
             list                            prints lists of different objects(tools, git aliases)
-            configure                       configures git aliases, username, email, etc.
+            config                          configures git aliases, username, email, etc.
             Execute 'sgit <command> --help' for more information about a command
     ```
 
@@ -90,7 +90,7 @@ Follow these steps to install `sgit` manually:
 | Command      | Description                |
 | ------------ | -------------------------- |
 | `list`       | Print different lists (list of available commands, pre-defined aliases)         |
-| `configure`  | Configures multiple things in git        |
+| `config`     | Configures multiple things in git        |
 
 ### List Command
 
@@ -141,7 +141,7 @@ Follow these steps to install `sgit` manually:
     Commands...
     -----------
     list
-    configure
+    config
     
     Execute 'sgit <command> --help' for details
     
@@ -155,7 +155,7 @@ Follow these steps to install `sgit` manually:
 
 To configure git username, email, default editor and pre-defined aliases:
 
-    $sgit configure --alias --git-alias --global --username "Your Name" --email "Your Email" --editor vim
+    $sgit config --alias --git-alias --global --username "Your Name" --email "Your Email" --editor vim
     
 This command results into:
     
@@ -180,34 +180,34 @@ This command results into:
 
 1. Configure username:
 
-    `$sgit configure --username "<Your Name>"`
+    `$sgit config --username "<Your Name>"`
     
-    `$sgit configure -u "<Your Name>"`
+    `$sgit config -u "<Your Name>"`
     
 2. Configure email:
 
-    `$sgit configure --email "<Your Email>"`
+    `$sgit config --email "<Your Email>"`
     
-    `$sgit configure -e "<Your Email>"`
+    `$sgit config -e "<Your Email>"`
     
   Multiple options can be applied simultaneously:
 
-   `$sgit configure -u "<Your Name>" -e "<Your Email>" --editor "vim"`
+   `$sgit config -u "<Your Name>" -e "<Your Email>" --editor "vim"`
 
 #### Alias Configuration
 1. Configure git aliases:
 
-    `$sgit configure --git-alias`
+    `$sgit config --git-alias`
     
 2. Configure shortcuts:
 
-    `$sgit configure --alias`
+    `$sgit config --alias`
     
 3. Remove configuration:
 
-    `$sgit configure --alias --unset`
+    `$sgit config --alias --unset`
     
-    `$sgit configure --git-alias --unset`
+    `$sgit config --git-alias --unset`
 
 ## Contributions and Development
 
