@@ -13,7 +13,7 @@ Shortcuts for common `git` commands and a tool for managing git configuration ea
     * [Configuration Command](#configuration-command)
       * [One-Time Configuration](#one-time-configuration)
       * [Generic Configuration](#generic-configuration)
-      * [Alias Configuration](#alias-configuration)
+      * [Shortcuts Configuration](#shortcuts-configuration)
   * [Contributions and Development](#contributions-and-development) 
 
 ## Installation
@@ -155,7 +155,7 @@ Follow these steps to install `sgit` manually:
 
 To configure git username, email, default editor and pre-defined aliases:
 
-    $sgit config --alias --git-alias --global --username "Your Name" --email "Your Email" --editor vim
+    $sgit config --shortcuts --git-alias --global --username "Your Name" --email "Your Email" --editor vim
     
 This command results into:
     
@@ -194,18 +194,18 @@ This command results into:
 
    `$sgit config -u "<Your Name>" -e "<Your Email>" --editor "vim"`
 
-#### Alias Configuration
+#### Shortcuts Configuration
 1. Configure git aliases:
 
     `$sgit config --git-alias`
     
 2. Configure shortcuts:
 
-    `$sgit config --alias`
+    `$sgit config --shortcuts`
     
 3. Remove configuration:
 
-    `$sgit config --alias --unset`
+    `$sgit config --shortcuts --unset`
     
     `$sgit config --git-alias --unset`
 

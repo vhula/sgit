@@ -7,6 +7,7 @@ CONFIGURE_ALIASES="no"
 SHORTCUTS_DIR="${SCRIPTPATH}"
 GIT_ALIAS_UNSET=""
 SHORTCUT_UNSET="no"
+SHORTCUT_PREFIX="git"
 
 function tool_help() {
     echo "config command usage: sgit config [ARGUMENT VALUE]... [OPTION]"
@@ -18,7 +19,8 @@ function tool_help() {
     echo "Options:"
     echo -e "\t--global\t\t\tapply git configuration globaly"
     echo -e "\t--git-alias\t\t\tconfigure git aliases"
-    echo -e "\t--alias\t\t\t\tconfigure aliases"
+    echo -e "\t--shortcuts\t\t\tconfigure shortcuts"
+    echo -e "\t--no-prefix\t\t\tdo not prepend 'git' prefix for shortcuts"
     echo -e "\t--unset\t\t\t\tremove configuration"
 }
 
@@ -48,7 +50,7 @@ function tool_args() {
       SHIFT_TIMES=1
       CONFIGURE_GIT_ALIASES="yes"
       ;;
-      --alias)
+      --shortcuts)
       SHIFT_TIMES=1
       CONFIGURE_ALIASES="yes"
       ;;
@@ -56,6 +58,10 @@ function tool_args() {
       SHIFT_TIMES=1
       UNSET_CONFIG="yes"
       GIT_ALIAS_UNSET="--unset"
+      ;;
+      --no-prefix)
+      SHIFT_TIMES=1
+      SHORTCUT_PREFIX=""
       ;;
       *)
       RETURN_VALUE=1
@@ -104,9 +110,10 @@ function tool_execute() {
           name=$(echo "$line" | sed --regexp-extended "s/(([^=]+)=(.*))/\2/")
           value=$(echo "$line" | sed --regexp-extended "s/(([^=]+)=(.*))/\3/")
           if [ ! -z "${value}" ]; then
-            SHORTCUT_SCRIPT="${SHORTCUTS_DIR}/git${name}"
+            SHORTCUT_SCRIPT="${SHORTCUTS_DIR}/${SHORTCUT_PREFIX}${name}"
             if [ "${UNSET_CONFIG}" == "yes" ]; then
-              rm "${SHORTCUT_SCRIPT}"
+              rm "${SHORTCUTS_DIR}/${SHORTCUT_PREFIX}${name}"
+              rm "${SHORTCUTS_DIR}/${name}"
             else
               touch "${SHORTCUT_SCRIPT}"
               chmod a+x "${SHORTCUT_SCRIPT}"
