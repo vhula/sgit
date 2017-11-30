@@ -25,7 +25,7 @@ Follow these steps to install `sgit` manually:
 1. Clone this repository
 2. Add `<cloned directory>/scripts` directory to your `$PATH` variable:
     
-    Assuming that this repository cloned into `/usr/local/bin/sgit/` directory:
+    Assuming that this repository is cloned into `/usr/local/bin/sgit/` directory:
     
     Insert this line in the end of `~/.bashrc` file:
     
