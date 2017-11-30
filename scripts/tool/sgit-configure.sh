@@ -112,8 +112,8 @@ function tool_execute() {
           if [ ! -z "${value}" ]; then
             SHORTCUT_SCRIPT="${SHORTCUTS_DIR}/${SHORTCUT_PREFIX}${name}"
             if [ "${UNSET_CONFIG}" == "yes" ]; then
-              rm "${SHORTCUTS_DIR}/${SHORTCUT_PREFIX}${name}"
-              rm "${SHORTCUTS_DIR}/${name}"
+              rm --force "${SHORTCUTS_DIR}/${SHORTCUT_PREFIX}${name}"
+              rm --force "${SHORTCUTS_DIR}/${name}"
             else
               touch "${SHORTCUT_SCRIPT}"
               chmod a+x "${SHORTCUT_SCRIPT}"
