@@ -6,6 +6,7 @@ Shortcuts for common `git` commands and a tool for managing git configuration ea
   * [Table of Contents](#table-of-contents)
   * [Installation](#installation)
     * [Manual Installation](#manual-installation)
+  * [Setup Shortcuts](#setup-shortcuts)
   * [Predefined Shortcuts and Aliases for Common Commands](#predefined-shortcuts-and-aliases-for-common-commands)
   * [`sgit` Usage](#sgit-usage)
     * [sgit Commands](#sgit-commands)
@@ -21,12 +22,35 @@ Shortcuts for common `git` commands and a tool for managing git configuration ea
 ### Manual Installation
 
 Follow these steps to install `sgit` manually:
-1. clone this repository
-2. add `<cloned directory>/scripts` directory to your `$PATH`
-
+1. Clone this repository
+2. Add `<cloned directory>/scripts` directory to your `$PATH` variable:
+    
     Assuming that this repository cloned into `/usr/local/bin/sgit/` directory:
     
-    `export PATH=$PATH:/usr/local/bin/sgit/scripts`
+    Insert this line in the end of `~/.bashrc` file:
+    
+    ```
+    ...
+    export PATH=$PATH:/usr/local/bin/sgit/scripts
+    ```
+    
+3. Source `~/.bashrc` file (run this command):
+
+    `source ~/.bashrc`
+    
+4. Restart the command line tool
+
+## Setup Shortcuts
+
+1. [Install `sgit`](#installation)
+
+2. Run this command:
+
+    `sgit config --shortcuts`
+    
+3. Use predefined shortcuts to work with git repositories:
+
+    `gits` is an equalent to `git status`
 
 ## Predefined Shortcuts and Aliases for Common Commands
 
