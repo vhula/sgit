@@ -1,18 +1,5 @@
 #!/bin/bash
 
-SCRIPTPATH="$( cd "$(dirname "$0")" ; pwd -P )"
-
-source "${SCRIPTPATH}/internal/logs.sh"
-
-if [ $# -eq 0 ]; then
-  log_error "no arguments are specified"
-  exit 1
-fi
-
-ARGS_SIZE=$#
-
-TOOL_NAME="${1}"
-
 function help() {
     echo "Usage: sgit <command> [ARGUMENT VALUE]... [OPTION]..."
     echo ""
@@ -27,6 +14,20 @@ function help() {
     echo -e "\tconfig\t\t\t\tconfigures git aliases, shortcuts, username, email, etc."
     echo -e "\tExecute 'sgit <command> --help' for more information about a command"
 }
+
+SCRIPTPATH="$( cd "$(dirname "$0")" ; pwd -P )"
+
+source "${SCRIPTPATH}/internal/logs.sh"
+
+if [ $# -eq 0 ]; then
+  log_error "no arguments are specified"
+  help
+  exit 1
+fi
+
+ARGS_SIZE=$#
+
+TOOL_NAME="${1}"
 
 function source_tool() {
   TOOL_NAME="${1}"
