@@ -129,6 +129,7 @@ function tool_execute() {
               log_info "\t'${SHORTCUT_PREFIX}${name}' is unset"
             else
               touch "${SHORTCUT_SCRIPT}"
+              echo "" > "${SHORTCUT_SCRIPT}"
               chmod a+x "${SHORTCUT_SCRIPT}"
               echo "#!/bin/bash" >> "${SHORTCUT_SCRIPT}"
               echo "git ${value}" >> "${SHORTCUT_SCRIPT}"
