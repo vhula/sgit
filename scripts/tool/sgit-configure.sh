@@ -8,6 +8,7 @@ SHORTCUTS_DIR="${SCRIPTPATH}"
 GIT_ALIAS_UNSET=""
 SHORTCUT_UNSET="no"
 SHORTCUT_PREFIX="git"
+SGIT_CONFIG_ARGS_PRESENT="no"
 
 function tool_help() {
     echo "config command usage: sgit config [ARGUMENT VALUE]... [OPTION]"
@@ -33,14 +34,17 @@ function tool_args() {
       -u|--username)
       SHIFT_TIMES=2
       USERNAME_ARG="${2}"
+      SGIT_CONFIG_ARGS_PRESENT="yes"
       ;;
       -e|--email)
       SHIFT_TIMES=2
       EMAIL_ARG="${2}"
+      SGIT_CONFIG_ARGS_PRESENT="yes"
       ;;
       --editor)
       SHIFT_TIMES=2
       EDITOR_ARG="${2}"
+      SGIT_CONFIG_ARGS_PRESENT="yes"
       ;;
       --global)
       SHIFT_TIMES=1
@@ -49,10 +53,12 @@ function tool_args() {
       --git-alias)
       SHIFT_TIMES=1
       CONFIGURE_GIT_ALIASES="yes"
+      SGIT_CONFIG_ARGS_PRESENT="yes"
       ;;
       --shortcuts)
       SHIFT_TIMES=1
       CONFIGURE_SHORTCUTS="yes"
+      SGIT_CONFIG_ARGS_PRESENT="yes"
       ;;
       --unset)
       SHIFT_TIMES=1
@@ -85,6 +91,12 @@ function configure_if_not_empty() {
 }
 
 function tool_execute() {
+  
+    if [ "${SGIT_CONFIG_ARGS_PRESENT}" == "no" ]; then
+      log_warn "not enough arguments specified"
+      tool_help
+    fi
+  
     configure_if_not_empty "user.name" "${USERNAME_ARG}"
     configure_if_not_empty "user.email" "${EMAIL_ARG}"
     configure_if_not_empty "core.editor" "${EDITOR_ARG}"
