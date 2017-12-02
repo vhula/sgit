@@ -115,7 +115,7 @@ function tool_execute() {
     fi
     
     if [ "${CONFIGURE_SHORTCUTS}" = "yes" ]; then
-      log_info "aliases configuration..."
+      log_info "shortcuts configuration..."
       while read -r line || [[ -n "$line" ]]; do
         echo "${line}" | grep --silent --regexp "^\s*$"
         if [ ! "$?" -eq 0 ]; then
