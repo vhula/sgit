@@ -98,7 +98,7 @@ esac
 done
 
 if [ "${VERBOSE_MODE}" == "yes" ]; then
-  LOG_LEVEL="${LOG_LEVEL_INFO}"
+  LOG_LEVEL="${LOG_LEVEL_DEBUG}"
 fi
 
 if [[ "${PRINT_HELP}" == "yes" && "${SOURCED}" != "yes" ]]; then

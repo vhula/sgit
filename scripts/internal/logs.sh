@@ -4,8 +4,9 @@ LOG_LEVEL_OFF=6
 LOG_LEVEL_ERR=5
 LOG_LEVEL_WARN=4
 LOG_LEVEL_INFO=3
+LOG_LEVEL_DEBUG=2
 
-LOG_LEVEL="${LOG_LEVEL_WARN}"
+LOG_LEVEL="${LOG_LEVEL_INFO}"
 
 function log_msg0() {
     local ALLOWED_LOG_LEVEL="${1}"
@@ -26,6 +27,10 @@ function log_warn() {
 
 function log_info() {
     log_msg0 "${LOG_LEVEL_INFO}" "${1}" "Info: "
+}
+
+function log_debug() {
+    log_msg0 "${LOG_LEVEL_DEBUG}" "${1}" "Debug: "
 }
 
 function log_msg() {
