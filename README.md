@@ -3,7 +3,6 @@
 Shortcuts for common `git` commands and a tool for managing git configuration easily
 
 ## Table of contents
-  * [Table of Contents](#table-of-contents)
   * [Installation](#installation)
     * [Manual Installation](#manual-installation)
   * [Setup Shortcuts](#setup-shortcuts)
