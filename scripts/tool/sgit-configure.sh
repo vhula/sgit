@@ -114,12 +114,13 @@ function tool_execute() {
             if [ "${UNSET_CONFIG}" == "yes" ]; then
               rm --force "${SHORTCUTS_DIR}/${SHORTCUT_PREFIX}${name}"
               rm --force "${SHORTCUTS_DIR}/${name}"
+              log_info "\t'${SHORTCUT_PREFIX}${name}' is unset"
             else
               touch "${SHORTCUT_SCRIPT}"
               chmod a+x "${SHORTCUT_SCRIPT}"
               echo "#!/bin/bash" >> "${SHORTCUT_SCRIPT}"
               echo "git ${value}" >> "${SHORTCUT_SCRIPT}"
-              log_info "\t'${name}' is set to \"${value}\""
+              log_info "\t'${SHORTCUT_PREFIX}${name}' is set to \"${value}\""
             fi
           fi
         fi
