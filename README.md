@@ -58,6 +58,7 @@ Follow these steps to install `sgit` manually:
 | `s`        | `gits`         | `git status`                   |             |
 | `pr`       | `gitpr`        | `git pull --rebase`            |             |
 | `c`        | `gitc`         | `git commit`                   |             |
+| `cm`       | `gitcm`        | `git commit -m`                |             |
 | `cp`       | `gitcp`        | `git commit --amend`           | Amend previous commit            |
 | `cpn`      | `gitcpn`       | `git commit --amend --no-edit` | Amend previous commit without editing the commit message |
 | `ch`       | `gitch`        | `git checkout`                 |             |
@@ -130,6 +131,7 @@ Follow these steps to install `sgit` manually:
     s=status
     pr=pull --rebase
     c=commit
+    cm=commit -m
     cp=commit --amend
     cpn=commit --amend --no-edit
     ch=checkout
