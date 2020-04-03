@@ -1,3 +1,19 @@
+plugins {
+    id 'distribution'
+}
+
+tasks.distTar.enabled = false
+
 description = "Tool for managing git configuration"
 version = "0.0.1-SNAPSHOT"
+
+distributions {
+    main {
+        contents {
+            into("scripts") {
+                from 'scripts'
+            }
+        }
+    }
+}
 
