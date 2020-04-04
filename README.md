@@ -8,9 +8,9 @@ Shortcuts for common `git` commands and a tool for managing git configuration ea
   * [Setup Shortcuts](#setup-shortcuts)
   * [Predefined Shortcuts and Aliases for Common Commands](#predefined-shortcuts-and-aliases-for-common-commands)
   * [`sgit` Usage](#sgit-usage)
-    * [sgit Commands](#sgit-commands)
-    * [List Command](#list-command)
-    * [Configuration Command](#configuration-command)
+    * [`sgit` Commands](#sgit-commands)
+    * [`list` Command](#list-command)
+    * [`config` Command](#configuration-command)
       * [One-Time Configuration](#one-time-configuration)
       * [Generic Configuration](#generic-configuration)
       * [Shortcuts Configuration](#shortcuts-configuration)
@@ -21,33 +21,37 @@ Shortcuts for common `git` commands and a tool for managing git configuration ea
 ### Manual Installation
 
 Follow these steps to install `sgit` manually:
-1. Clone this repository
-2. Add `<cloned directory>/scripts` directory to your `$PATH` variable:
+1. Download the [latest zip package](https://github.com/vhula/sgit/releases/download/0.1.0/sgit-0.1.0.zip)
+1. Unzip the archive to an arbitrary directory
+
+    `unzip sgit-0.1.0.zip -d ~/tools`
+
+1. Add unzipped directory (`sgit-0.1.0/scripts`) to your `$PATH` variable:
     
-    Assuming that this repository is cloned into `/usr/local/bin/sgit/` directory:
+    Assuming that the package is unzipped in the `~/tools` directory:
     
     Insert this line in the end of `~/.bashrc` file:
     
-    ```
+    ```shell script
     ...
-    export PATH=$PATH:/usr/local/bin/sgit/scripts
+    export PATH=$PATH:~/tools/sgit-0.1.0/scripts
     ```
     
-3. Source `~/.bashrc` file (run this command):
+1. Source `~/.bashrc` file (run this command):
 
     `source ~/.bashrc`
-    
-4. Restart the command line tool
+
+1. Execute [One-Time Configuration](#one-time-configuration)
 
 ## Setup Shortcuts
 
 1. [Install `sgit`](#installation)
 
-2. Run this command:
+1. Run this command:
 
     `sgit config --shortcuts`
     
-3. Use predefined shortcuts to work with git repositories:
+1. Use predefined shortcuts to work with git repositories:
 
     `gits` is an equalent to `git status`
 
@@ -109,16 +113,16 @@ Follow these steps to install `sgit` manually:
 </p>
 </details>
 
-### sgit Commands
+### `sgit` Commands
 
 | Command      | Description                |
 | ------------ | -------------------------- |
 | `list`       | Print different lists (list of available commands, pre-defined aliases)         |
 | `config`     | Configures multiple things in git        |
 
-### List Command
+### `list` Command
 
-1. List all pre-defined aliases:
+#### List all pre-defined aliases:
 
     `$sgit list --aliases`
     
@@ -155,7 +159,7 @@ Follow these steps to install `sgit` manually:
 </p>
 </details>
 
-2. List commands
+#### List commands
 
     `$sgit list --commands`
     
@@ -174,7 +178,7 @@ Follow these steps to install `sgit` manually:
 </details>
 
 
-### Configuration Command
+### `config` Command
 
 #### One-Time Configuration
 
@@ -209,7 +213,7 @@ This command results into:
     
     `$sgit config -u "<Your Name>"`
     
-2. Configure email:
+1. Configure email:
 
     `$sgit config --email "<Your Email>"`
     
@@ -224,11 +228,11 @@ This command results into:
 
     `$sgit config --git-alias`
     
-2. Configure shortcuts:
+1. Configure shortcuts:
 
     `$sgit config --shortcuts`
     
-3. Remove configuration:
+1. Remove configuration:
 
     `$sgit config --shortcuts --unset`
     
@@ -239,8 +243,8 @@ This command results into:
 ### Contribution
 
 1. Create an issue (what you want to see in this tool)
-2. Assign any issue to yourself
-3. Create a pull request
+1. Assign any issue to yourself
+1. Create a pull request
 
 ### Development
 
