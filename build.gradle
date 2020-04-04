@@ -1,10 +1,12 @@
 plugins {
     id 'distribution'
+    id 'maven-publish'
 }
 
 tasks.distTar.enabled = false
 
 description = "Tool for managing git configuration"
+group = 'io.github.vhula'
 version = "0.0.1-SNAPSHOT"
 
 distributions {
@@ -17,3 +19,20 @@ distributions {
     }
 }
 
+publishing {
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/vhula/sgit")
+            credentials {
+                username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
+                password = project.findProperty("gpr.key") ?: System.getenv("TOKEN")
+            }
+        }
+    }
+    publications {
+       gpr(MavenPublication) {
+           artifact distZip
+       }
+    }
+}
