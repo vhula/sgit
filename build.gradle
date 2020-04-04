@@ -7,7 +7,7 @@ tasks.distTar.enabled = false
 
 description = "Tool for managing git configuration"
 group = 'io.github.vhula'
-version = "0.0.1-SNAPSHOT"
+version = "0.1.0"
 
 distributions {
     main {
