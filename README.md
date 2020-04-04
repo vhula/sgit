@@ -10,7 +10,7 @@ Shortcuts for common `git` commands and a tool for managing git configuration ea
   * [`sgit` Usage](#sgit-usage)
     * [`sgit` Commands](#sgit-commands)
     * [`list` Command](#list-command)
-    * [`config` Command](#configuration-command)
+    * [`config` Command](#config-command)
       * [One-Time Configuration](#one-time-configuration)
       * [Generic Configuration](#generic-configuration)
       * [Shortcuts Configuration](#shortcuts-configuration)
@@ -36,10 +36,8 @@ Follow these steps to install `sgit` manually:
     ...
     export PATH=$PATH:~/tools/sgit-0.1.0/scripts
     ```
-    
-1. Source `~/.bashrc` file (run this command):
 
-    `source ~/.bashrc`
+1. Restart the terminal
 
 1. Execute [One-Time Configuration](#one-time-configuration)
 
